@@ -1,0 +1,7 @@
+ABOUT CODE 
+
+Messagetest.java
+This JUnit test class verifies the functionality of the messaging application. It tests user registration and login features, including username, password, and cell phone validation. The tests also check message length, recipient formatting, message hash generation, and message sending options. Additional tests verify message storage, searching by recipient or ID, deleting messages by hash, generating reports, and counting total sent messages to ensure the application works correctly.
+ 
+Message.java
+This Java program implements a QuickChat messaging system with user registration and login functionality. It validates usernames, passwords, and South African phone numbers. Users can send, store, or disregard messages, while the system generates unique message IDs and hashes. Messages are saved in arrays and can be searched, deleted, or reported. Additional features include displaying the longest message, counting sent messages, and storing messages in a JSON file.
