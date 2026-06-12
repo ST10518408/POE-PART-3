@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="QuickChat" default="run-tests" basedir=".">
+
+    <!-- Folder paths -->
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="test.dir" value="test"/>
+    <property name="lib.dir" value="lib"/>
+
+    <!-- Clean build folder -->
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <!-- Create folders -->
+    <target name="init">
+        <mkdir dir="${classes.dir}"/>
+    </target>
+
+    <!-- Compile main code -->
+    <target name="compile">
+        <javac srcdir="${src.dir}" destdir="${classes.dir}">
+            <classpath>
+                <fileset dir="${lib.dir}">
+                    <include name="**/*.jar"/>
+                </fileset>
+            </classpath>
+        </javac>
+    </target>
+
+    <!-- Compile tests -->
+    <target name="compile-tests" depends="compile">
+        <javac srcdir="${test.dir}" destdir="${classes.dir}">
+            <classpath>
+                <pathelement path="${classes.dir}"/>
+                <fileset dir="${lib.dir}">
+                    <include name="**/*.jar"/>
+                </fileset>
+            </classpath>
+        </javac>
+    </target>
+
+    <!-- Run JUnit tests -->
+    <target name="run-tests" depends="compile-tests">
+        <junit printsummary="true">
+            <classpath>
+                <pathelement path="${classes.dir}"/>
+                <fileset dir="${lib.dir}">
+                    <include name="**/*.jar"/>
+                </fileset>
+            </classpath>
+
+            <batchtest>
+                <fileset dir="${test.dir}">
+                    <include name="**/*Test.java"/>
+                </fileset>
+            </batchtest>
+
+            <formatter type="plain"/>
+            <formatter type="xml"/>
+        </junit>
+    </target>
+
+</project>
